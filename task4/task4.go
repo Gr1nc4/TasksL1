@@ -51,6 +51,6 @@ func main() {
 }
 func workerDo(id int, ch chan int) {
 	for {
-		fmt.Printf("Worker #%d is doing job %d \n", id, <-ch)
+		fmt.Printf("Воркер #%d делает работу %d \n", id, <-ch)
 	}
 }

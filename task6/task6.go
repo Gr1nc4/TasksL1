@@ -14,10 +14,10 @@ func worker1(ch1 chan int) {
 	for {
 		select {
 		case <-ch1:
-			fmt.Println("worker1 остановлен")
+			fmt.Println("Воркер1 остановлен")
 			return
 		default:
-			fmt.Println("worker1 работает")
+			fmt.Println("Воркер1 работает")
 			time.Sleep(1 * time.Millisecond)
 		}
 	}

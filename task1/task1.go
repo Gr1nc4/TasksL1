@@ -1,4 +1,6 @@
-package task1
+package main
+
+import "fmt"
 
 //Дана структура Human (с произвольным набором полей и методов).
 //Реализовать встраивание методов в структуре Action от
@@ -13,13 +15,13 @@ type Action struct {
 	Human // Встраиваение Human в Action. Action наследует поля Human
 }
 
-//func main() {
-//	NewAction := Action{
-//		Id: "askdyiu12y3",
-//		Human: Human{
-//			Name: "John",
-//			Age:  32,
-//		},
-//	}
-//	fmt.Println(NewAction)
-//}
+func main() {
+	NewAction := Action{
+		Id: "askdyiu12y3",
+		Human: Human{
+			Name: "John",
+			Age:  32,
+		},
+	}
+	fmt.Println(NewAction)
+}

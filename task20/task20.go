@@ -7,12 +7,12 @@ import (
 
 func main() {
 	str := "snow dog sun"
-	tempstr := strings.Split(str, " ")
-	arr := make([]string, 0)
-	for i := len(tempstr) - 1; i >= 0; i-- {
-		arr = append(arr, tempstr[i])
+	splitstr := strings.Split(str, " ")       //разбиваем нашу строчку по пробелами кладем слова в массив
+	arr := make([]string, 0)                  //создаем массив куда будем складывать наши слова в обратном порядке
+	for i := len(splitstr) - 1; i >= 0; i-- { //проходимся по нашему заспличенному массиву с конца и кладем элементы в arr
+		arr = append(arr, splitstr[i])
 
 	}
-	fmt.Println("Строка до переворота", str)
-	fmt.Println("Строка после переворота ", strings.Join(arr, " "))
+	fmt.Println("Исходная строка", str)
+	fmt.Println("Развернутая строка ", strings.Join(arr, " "))
 }

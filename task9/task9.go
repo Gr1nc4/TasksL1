@@ -18,6 +18,7 @@ func main() {
 	}
 }
 
+//Пишем значения в первый канал
 func in(arr []int, ch1 chan int) {
 	for _, val := range arr {
 		ch1 <- val
@@ -25,6 +26,7 @@ func in(arr []int, ch1 chan int) {
 	close(ch1)
 }
 
+//пишем значения*2 из первого канала во второй
 func out(ch2 chan int, ch1 chan int) {
 	for val := range ch1 {
 		ch2 <- val * 2

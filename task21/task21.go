@@ -1,31 +1,45 @@
-// Package adapter is an example of the Adapter Pattern.
-package adapter
+package main
 
-// Target provides an interface with which the system should work.
-type Target interface {
-	Request() string
+import "fmt"
+
+//Реализовать паттерн «адаптер» на любом примере.
+
+//Смысл работы этого паттерна в том, что если у вас есть класс и его интерфейс не совместим с кодом вашей системы,
+//то что бы разрешить этот конфликт, мы не изменяем код этого класса, а пишем для него адаптер.
+//Другими словами Adapter адаптирует существующий код к требуемому интерфейсу (является переходником).
+
+// К чему требуется адаптировать
+type Animal interface {
+	Speak()
 }
 
-// Adaptee implements system to be adapted.
-type Adaptee struct {
+type People struct{}
+
+func (p People) Speak() {
+	fmt.Println("Hello!")
 }
 
-// NewAdapter is the Adapter constructor.
-func NewAdapter(adaptee *Adaptee) Target {
-	return &Adapter{adaptee}
+//Адаптируемый
+type Dog interface {
+	Bark()
 }
 
-// SpecificRequest implementation.
-func (a *Adaptee) SpecificRequest() string {
-	return "Request"
+type Сorgi struct{}
+
+func (c Сorgi) Bark() {
+	fmt.Println("Wow!")
 }
 
-// Adapter implements Target interface and is an adapter.
-type Adapter struct {
-	*Adaptee
+//Адаптер
+type AdapterDog struct {
+	dog Сorgi
 }
 
-// Request is an adaptive method.
-func (a *Adapter) Request() string {
-	return a.SpecificRequest()
+func (a AdapterDog) Speak() {
+	a.dog.Bark()
+}
+
+func main() {
+	var dog Animal
+	dog.Speak()
 }
