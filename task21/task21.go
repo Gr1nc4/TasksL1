@@ -8,38 +8,35 @@ import "fmt"
 //то что бы разрешить этот конфликт, мы не изменяем код этого класса, а пишем для него адаптер.
 //Другими словами Adapter адаптирует существующий код к требуемому интерфейсу (является переходником).
 
-// К чему требуется адаптировать
-type Animal interface {
-	Speak()
+//какой-то внешний сервис, который нужно адаптировать
+type AnalyticalDataService interface {
+	SendXmlData()
+}
+type Xml struct {
 }
 
-type People struct{}
-
-func (p People) Speak() {
-	fmt.Println("Hello!")
+func (doc Xml) SendXmlData() {
+	fmt.Println("Отправка XML")
 }
 
-//Адаптируемый
-type Dog interface {
-	Bark()
+//Наша система, которая работает с json
+type Json struct {
 }
 
-type Сorgi struct{}
-
-func (c Сorgi) Bark() {
-	fmt.Println("Wow!")
+func (doc Json) ConvertToXml() string {
+	return "XML"
 }
 
-//Адаптер
-type AdapterDog struct {
-	dog Сorgi
+//Наш адаптер, который позволяет реализовывать методы внешнего сервиса
+type JsonDocAdapter struct {
+	json *Json
 }
 
-func (a AdapterDog) Speak() {
-	a.dog.Bark()
+func (adapter JsonDocAdapter) SendXmlData() {
+	adapter.json.ConvertToXml()
 }
 
 func main() {
-	var dog Animal
-	dog.Speak()
+	var json JsonDocAdapter
+	json.SendXmlData()
 }
